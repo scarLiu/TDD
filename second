@@ -1,0 +1,29 @@
+[1mdiff --git a/functional_tests.py b/functional_tests.py[m
+[1mindex df73c70..c5cd3f9 100644[m
+[1m--- a/functional_tests.py[m
+[1m+++ b/functional_tests.py[m
+[36m@@ -1,6 +1,21 @@[m
+ from selenium import webdriver[m
+[32m+[m[32mimport unittest[m
+ [m
+[31m-browser = webdriver.Firefox()[m
+[31m-browser.get('http://localhost:8000')[m
+[32m+[m[32mclass NewVisitorTest(unittest.TestCase):[m
+ [m
+[31m-assert 'Django' in browser.title[m
+[32m+[m[32m    def setUp(self):[m
+[32m+[m[32m        self.browser = webdriver.Firefox()[m
+[32m+[m
+[32m+[m[32m    def tearDown(self):[m
+[32m+[m[32m        self.browser.quit()[m
+[32m+[m
+[32m+[m[32m    def test_can_start_a_list_and_retrieve_it_later(self):[m
+[32m+[m[32m        self.browser.get('http://localhost:8000')[m
+[32m+[m[32m        self.assertIn('To-Do', self.browser.title)[m
+[32m+[m[32m        self.fail('Finish the test!')[m
+[32m+[m
+[32m+[m[32m        #[...rest of comments as before][m
+[32m+[m
+[32m+[m
+[32m+[m[32mif __name__ == '__main__':[m
+[32m+[m[32m    unittest.main(warnings = 'ignore')[m
